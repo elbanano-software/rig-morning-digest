@@ -98,6 +98,16 @@ describe('digest routes', () => {
     expect(json.status).toBe(404);
   });
 
+  it('returns 404 for a night name outside the date format', async () => {
+    const [page, json] = await Promise.all([
+      app.request('/digest/not-a-date'),
+      app.request('/api/digest/not-a-date'),
+    ]);
+
+    expect(page.status).toBe(404);
+    expect(json.status).toBe(404);
+  });
+
   it('renders an empty night and returns empty rows as JSON', async () => {
     writeFileSync(join(runsDir, '2026-11-04.jsonl'), '');
 

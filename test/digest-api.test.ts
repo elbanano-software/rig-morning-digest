@@ -25,8 +25,9 @@ describe('digest JSON route', () => {
 
       expect(response.status).toBe(200);
       expect(response.headers.get('content-type')).toContain('application/json');
-      expect(await response.json()).toEqual(readNight(runsDir, '2026-10-28'));
-      expect(readNight(runsDir, '2026-10-28').rows.map(({ job }) => job)).toEqual(['alpha', 'zeta']);
+      const { rows, badLines } = readNight(runsDir, '2026-10-28');
+      expect(await response.json()).toEqual({ rows, badLines });
+      expect(rows.map(({ job }) => job)).toEqual(['alpha', 'zeta']);
     } finally {
       rmSync(runsDir, { recursive: true, force: true });
     }
