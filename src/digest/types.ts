@@ -15,6 +15,7 @@ export type DigestRow = {
 export type DigestNight = {
   rows: DigestRow[];
   badLines: number;
+  counts: Record<DigestRow['lastStatus'], number>;
 };
 
 type RunEvent = {
@@ -50,6 +51,7 @@ export function readNight(runsDir: string, night: string): DigestNight {
 
   const jobs = new Map<string, DigestRow>();
   let badLines = 0;
+  const counts: DigestNight['counts'] = { ok: 0, retry: 0, fail: 0 };
 
   for (const line of lines) {
     let value: unknown;
@@ -65,6 +67,7 @@ export function readNight(runsDir: string, night: string): DigestNight {
       continue;
     }
 
+    counts[value.status] += 1;
     const row = jobs.get(value.job);
     if (row === undefined) {
       jobs.set(value.job, {
@@ -91,5 +94,6 @@ export function readNight(runsDir: string, night: string): DigestNight {
   return {
     rows: [...jobs.values()].sort((left, right) => left.job.localeCompare(right.job)),
     badLines,
+    counts,
   };
 }
