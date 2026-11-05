@@ -49,14 +49,14 @@ describe('digest page', () => {
 
   it('renders an empty run log as nothing ran', async () => {
     const runsDir = createRunsDir();
-    writeFileSync(join(runsDir, 'empty-night.jsonl'), '');
+    writeFileSync(join(runsDir, '2026-10-29.jsonl'), '');
 
     const response = await createApp({
       adapter: 'shim',
       installed: '2026-10-29T14:06:00+01:00',
       beatEverySeconds: 60,
       runsDir,
-    }).request('/digest/empty-night');
+    }).request('/digest/2026-10-29');
 
     expect(response.status).toBe(200);
     expect(await response.text()).toContain('nothing ran');
