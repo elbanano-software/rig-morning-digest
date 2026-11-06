@@ -1,8 +1,9 @@
 ---
 plan: morning-digest
-status: ready
+status: done
 owner: rook
 opened: 2026-10-29
+closed: 2026-11-06
 ---
 
 # Morning digest
@@ -77,3 +78,17 @@ page again with `LANE_MARKER` unset (the banner reads "no marker set") and uploa
 link. Move this plan to `docs/plans/done/` with its issue list.
 
 Done when: the preview link no longer shows the lane marker.
+
+## Issues
+
+| # | Issue | Blocked by | Worker | Closed |
+|---|-------|-----------|--------|--------|
+| 1 | Run log reader | — | OpenCode subagent · litellm/gpt-6-luna · medium | 2026-11-05 |
+| 2 | Digest page: GET /digest/:night | #1 | OpenCode subagent · litellm/gpt-6-luna · medium | 2026-11-05 |
+| 3 | Digest JSON API: GET /api/digest/:night | #1 | OpenCode subagent · litellm/gpt-6-luna · medium | 2026-11-05 |
+| 4 | Board links to nightly digests | #1 | OpenCode subagent · litellm/gpt-6-luna · medium | 2026-11-05 |
+| 5 | Digest route tests | #1 | OpenCode subagent · litellm/gpt-6-luna · medium | 2026-11-05 |
+| 6 | Public preview for review | #2, #3, #4, #5 | OpenCode · litellm/gpt-6-luna · medium | 2026-11-06 |
+| 7 | Remove marker and archive plan | #6 | OpenCode · litellm/gpt-6-luna · medium | 2026-11-06 |
+
+The reviewer saw the marked preview, then the same public URL was replaced with the marker-free page: https://elbanano-software.github.io/rig-morning-digest/.
